@@ -1,24 +1,20 @@
-"use srtict";
-{
-  const goods = "Кроссовки";
-  const amountGoods = 7;
-  const categoryGoods = "Спорт";
-  const priceGoods = 4575;
+"use strict";
 
-  const resault = amountGoods * priceGoods;
+// {
+//   const goods = prompt("Введите наименование товара", "");
+//   const amountGoods = +prompt("Введите количество товара", "");
+//   const categoryGoods = prompt("Введите категорию товара", "");
+//   const priceGoods = +prompt("Введите цену товара", "");
 
-  console.log(goods);
-  console.log(resault + " руб.");
-}
+//   if (typeof amountGoods !== "number" && typeof priceGoods !== "number") {
+//     alert("Вы ввели некорректные данные");
+//   } else {
+//     console.log(
+//       `На складе ${amountGoods} единицы товара ${goods} на сумму ${
+//         priceGoods * amountGoods
+//       } деревянных`
+//     );
+//   }
 
-{
-  const goods = "Спортивный костюм";
-  const amountGoods = 7;
-  const categoryGoods = "Спорт";
-  const priceGoods = 4575;
-
-  const resault = amountGoods * priceGoods;
-
-  console.log(goods);
-  console.log(resault + " руб.");
-}
+//   console.log(typeof amountGoods === "number");
+// }
