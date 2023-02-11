@@ -1,15 +1,12 @@
 "use strict";
 
-const generator2 = (min, max, count) => {
-  let a = [];
-  for (let i = 0; i < count; ++i) {
-    let rand = min - 0.5 + Math.random() * (max - min + 1);
-    a.push(rand[i]);
-    console.log(rand[i]);
-    return a;
-  }
+const generator2 = (n, m, count) => {
+  let array = [];
 
-  console.log(a);
+  for (let i = 0; i < count; i++) {
+    array.push(Math.floor(Math.random() * (m - n + 1)) + n);
+  }
+  console.log(array);
 };
 
-generator2(5, 100, 10);
+generator2(0, 50, 5);
