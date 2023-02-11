@@ -3,14 +3,14 @@ function random(number) {
   return Math.ceil(Math.random() * number);
 }
 
-let name = prompt("Привет! Как тебя зовут?");
+let names = prompt("Привет! Как тебя зовут?");
 
-while (name == "" || name == null) {
-  name = prompt("Привет! Как тебя зовут?");
+while (names == "" || names == null) {
+  names = prompt("Привет! Как тебя зовут?");
 }
 
 alert(
-  name +
+  names +
     ', давай с тобой сыграем в игру. Я загадал число от 1 до 1000. Попробуй отгадать его. После каждой попытки я скажу "мало", "много" или "верно". Когда тебе надоест играть, нажми кнопку Esc на клавиатуре. Поехали!'
 );
 
