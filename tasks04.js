@@ -26,4 +26,3 @@ const getAveragePriceGoods = (arr) => {
   let res2 = Math.round(sum / newArr.length);
   console.log(`средняя стоимость одного товара в магазине: ${res2} рублей`);
 };
-getAveragePriceGoods(allСashbox2);

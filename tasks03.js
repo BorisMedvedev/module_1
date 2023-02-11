@@ -18,5 +18,3 @@ const addPrefix = (arr, prefix) => {
   console.info(newArr);
   return newArr;
 };
-
-addPrefix(names, "Mr");

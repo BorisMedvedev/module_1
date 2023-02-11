@@ -1,19 +1,15 @@
 "use strict";
 
-const allСashbox = [4500, 3210, 650, 1250, 7830, 990, 13900, 370];
-
-const getAverageValue = (arr) => {
-  let sum = 0;
-
-  const newArr = [...arr];
-  for (let i = 0; i < newArr.length; i++) {
-    sum += newArr[i];
+const generator2 = (min, max, count) => {
+  let a = [];
+  for (let i = 0; i < count; ++i) {
+    let rand = min - 0.5 + Math.random() * (max - min + 1);
+    a.push(rand[i]);
+    console.log(rand[i]);
+    return a;
   }
-  const res = Math.round(sum / newArr.length);
-  console.log(
-    `количество покупок: ${newArr.length}, средний чек на сумму ${res} рублей`
-  );
-  return res;
+
+  console.log(a);
 };
 
-getAverageValue(allСashbox);
+generator2(5, 100, 10);

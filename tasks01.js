@@ -1,12 +1,14 @@
 "use strict";
-const allStudents = ["Петров", "Иванов", "Васильев", "Яковлева", "Степанова"];
-const failedStudents = ["Петров", "Иванов", "Васильев"];
 
-const successStudents = (arr_1, arr_2) => {
-  const newArr = [...arr_1, ...arr_2];
-  let resArr = newArr.filter((item, index) => {
-    return newArr.indexOf(item) !== index;
-  });
-  console.log(resArr);
+const generator = (count) => {
+  let a = [];
+  let m = 0;
+  let n = 100;
+  for (let i = m; i < count; ++i) {
+    a.push(Math.round(Math.random() * n));
+  }
+
+  console.log(a);
 };
-successStudents(allStudents, failedStudents);
+
+generator(10);
