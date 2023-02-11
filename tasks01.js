@@ -1,11 +1,12 @@
 "use strict";
+const allStudents = ["Петров", "Иванов", "Васильев", "Яковлева", "Степанова"];
+const failedStudents = ["Петров", "Иванов", "Васильев"];
 
-const foo = () => {
-  for (let i = 1; i <= 10; i++) {
-    for (let j = 1; j <= 10; j++) {
-      console.log(`${i} в степени ${j} = ${Math.pow(i, j)}`);
-    }
-  }
+const successStudents = (arr_1, arr_2) => {
+  const newArr = [...arr_1, ...arr_2];
+  let resArr = newArr.filter((item, index) => {
+    return newArr.indexOf(item) !== index;
+  });
+  console.log(resArr);
 };
-
-foo();
+successStudents(allStudents, failedStudents);
