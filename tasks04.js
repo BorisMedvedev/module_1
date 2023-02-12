@@ -4,7 +4,7 @@ const leapYears = (n, m) => {
   let leapYearCount = 0;
 
   function isLeapYear(year) {
-    return new Date(year, 1, 29).getMonth() == 1;
+    return new Date(year, 1, 29).getMonth() === 1;
   }
 
   if (m < n) {
