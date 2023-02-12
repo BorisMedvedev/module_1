@@ -12,8 +12,7 @@ const allСashbox2 = [
 ];
 
 const getAveragePriceGoods = (arr) => {
-  const total = arr.reduce((acc, item) => {
-    console.log(item);
-  }, 1);
+  const total = arr.reduce((acc, item) => acc + item, 0);
+  return total;
 };
 console.log(getAveragePriceGoods(allСashbox2));
