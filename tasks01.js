@@ -13,4 +13,3 @@ const generateValid = (allE, notPassed) => {
 };
 
 console.log(generateValid(allStudents, failedStudents));
-

@@ -12,18 +12,8 @@ const allСashbox2 = [
 ];
 
 const getAveragePriceGoods = (arr) => {
-  const newArr = [];
-  let sum = 0;
-  for (let i = 0; i < arr.length; i++) {
-    const res = arr[i];
-    const [x, y] = res;
-
-    const q = Math.round(y / x);
-    newArr.push(q);
-
-    sum += newArr[i];
-  }
-  let res2 = Math.round(sum / newArr.length);
-  console.log(`средняя стоимость одного товара в магазине: ${res2} рублей`);
+  const total = arr.reduce((acc, item) => {
+    console.log(item);
+  }, 1);
 };
-getAveragePriceGoods(allСashbox2);
+console.log(getAveragePriceGoods(allСashbox2));

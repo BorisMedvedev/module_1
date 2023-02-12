@@ -12,11 +12,6 @@ const names = [
   "Alexander",
 ];
 
-const addPrefix = (arr, prefix) => {
-  let newArr = arr.map((el) => `${prefix} ${el}`);
+const addPrefix = (arr, prefix) => arr.map((el) => `${prefix} ${el}`);
 
-  console.info(newArr);
-  return newArr;
-};
-
-addPrefix(names, "Mr");
+console.log(addPrefix(names, "Mr"));
