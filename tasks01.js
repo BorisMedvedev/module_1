@@ -1,12 +1,16 @@
 "use strict";
-const allStudents = ["Петров", "Иванов", "Васильев", "Яковлева", "Степанова"];
+const allStudents = ["Петров", "Иванов", "Васильев", "Степанова", "Яковлева"];
 const failedStudents = ["Петров", "Иванов", "Васильев"];
 
-const successStudents = (arr_1, arr_2) => {
-  const newArr = [...arr_1, ...arr_2];
-  let resArr = newArr.filter((item, index) => {
-    return newArr.indexOf(item) !== index;
-  });
-  console.log(resArr);
+const generateValid = (allE, notPassed) => {
+  const successfullyPassed = [];
+  for (let indexAll in allE) {
+    if (!notPassed.includes(allE[indexAll])) {
+      successfullyPassed.push(allE[indexAll]);
+    }
+  }
+  return successfullyPassed;
 };
-successStudents(allStudents, failedStudents);
+
+console.log(generateValid(allStudents, failedStudents));
+
