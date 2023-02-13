@@ -11,16 +11,10 @@ const allСashbox2 = [
   [1, 370],
 ];
 
-const getAveragePriceGoods = (data) => {
-  let res = data.reduce(
-    (firstArr, secondArr) => [
-      ...firstArr,
-      secondArr.reduce((sum, el) => Math.floor(el / sum)),
-    ],
-    []
-  );
-
-  return Math.floor(res.reduce((acc, item) => acc + item / res.length, 0));
-};
+const getAveragePriceGoods = (data) =>
+  data
+    .reduce((accArr, item) => [accArr[0] + item[0], accArr[1] + item[1]])
+    .reduce((total, i) => Math.floor(i / total));
 
 console.log(getAveragePriceGoods(allСashbox2));
+//760
