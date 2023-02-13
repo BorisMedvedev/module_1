@@ -1,32 +1,25 @@
-"use strict";
+'use strict';
 
 const leapYears = (n, m) => {
-  let leapYearCount = 0;
-
-  function isLeapYear(year) {
+  const arrayDate = [];
+  const min = Math.min(n, m);
+  const max = Math.max(n, m);
+  const isLeapYear = (year) => {
     return new Date(year, 1, 29).getMonth() === 1;
-  }
-
-  if (m < n) {
-    for (let i = m; i <= n; i++) {
+  };
+  if (max < min) {
+    for (let i = max; i <= min; i++) {
       if (isLeapYear(i)) {
-        console.log(i);
-        leapYearCount++;
+        arrayDate.push(i);
       }
     }
   } else
-    for (let i = n; i <= m; i++) {
+    for (let i = min; i <= max; i++) {
       if (isLeapYear(i)) {
-        console.log(i);
-        leapYearCount++;
+        arrayDate.push(i);
       }
     }
-
-  console.log(
-    "В заданном диапазоне найдено " +
-      leapYearCount +
-      " високосных лет, они записаны в консоли."
-  );
+  return arrayDate;
 };
 
-leapYears(1990, 2023);
+console.log(leapYears(1990, 2020));

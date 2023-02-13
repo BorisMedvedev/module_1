@@ -1,14 +1,15 @@
-"use strict";
-
-const generator3 = (n, m, count, num = "") => {
-  let array = [];
+'use strict';
+const generator3 = (n, m, count, num = '') => {
+  const array = [];
+  const optionalArray = ['even', 'odd'];
+  const min = Math.min(n, m);
+  const max = Math.max(n, m) - +optionalArray.includes(num);
 
   for (let i = 0; i < count; i++) {
-    let res = Math.floor(Math.random() * (m - n + 1) + n);
-    array.push(res);
+    let item = Math.floor(Math.random() * (max - min + 1) + min);
+    (num === 'even' && !(item % 2)) || (num === 'even' && item % 2 && ++item);
+    array.push(item);
   }
-  console.log(array);
   return array;
 };
-
-generator3(0, 50, 10, "even");
+console.log(generator3(0, -50, 99, 'even'));

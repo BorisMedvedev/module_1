@@ -1,5 +1,4 @@
 "use strict";
-
 const generator = (count) => {
   let a = [];
   let m = 0;
@@ -7,7 +6,6 @@ const generator = (count) => {
   for (let i = m; i < count; ++i) {
     a.push(Math.round(Math.random() * n));
   }
-  console.log(a);
+  return a;
 };
-
-generator(5);
+console.log(generator(5));
