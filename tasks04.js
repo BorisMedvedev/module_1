@@ -14,14 +14,13 @@ const leapYears = (n, m) => {
         leapYearCount++;
       }
     }
-  } else if (n < m) {
+  } else
     for (let i = n; i <= m; i++) {
       if (isLeapYear(i)) {
         console.log(i);
         leapYearCount++;
       }
     }
-  }
 
   console.log(
     "В заданном диапазоне найдено " +
