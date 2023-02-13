@@ -1,6 +1,6 @@
 "use strict";
 
-const generator2 = (n = 0, m = 0, count) => {
+const generator2 = (n, m, count) => {
   let array = [];
 
   for (let i = 0; i < count; i++) {
