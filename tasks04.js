@@ -12,7 +12,15 @@ const allСashbox2 = [
 ];
 
 const getAveragePriceGoods = (data) => {
-  return data.reduce((firstArr, secondArr) => [...firstArr, secondArr.reduce((sum, el) => Math.floor(el / sum)),], []);
+  let res = data.reduce(
+    (firstArr, secondArr) => [
+      ...firstArr,
+      secondArr.reduce((sum, el) => Math.floor(el / sum)),
+    ],
+    []
+  );
+
+  return Math.floor(res.reduce((acc, item) => acc + item / res.length, 0));
 };
 
 console.log(getAveragePriceGoods(allСashbox2));
