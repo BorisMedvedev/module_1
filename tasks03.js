@@ -7,7 +7,7 @@ const generator3 = (n, m, count, num = '') => {
 
   for (let i = 0; i < count; i++) {
     let item = Math.floor(Math.random() * (max - min + 1) + min);
-    (num === 'even' && !(item % 2)) || (num === 'even' && item % 2 && ++item);
+    if ((num === 'even' && item % 2) || (num === 'odd' && !(item % 2))) ++item;
     array.push(item);
   }
   return array;

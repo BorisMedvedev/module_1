@@ -7,19 +7,12 @@ const leapYears = (n, m) => {
   const isLeapYear = (year) => {
     return new Date(year, 1, 29).getMonth() === 1;
   };
-  if (max < min) {
-    for (let i = max; i <= min; i++) {
-      if (isLeapYear(i)) {
-        arrayDate.push(i);
-      }
+  for (let i = min; i <= max; i++) {
+    if (isLeapYear(i) && min > 0 && max > 0) {
+      arrayDate.push(i);
     }
-  } else
-    for (let i = min; i <= max; i++) {
-      if (isLeapYear(i)) {
-        arrayDate.push(i);
-      }
-    }
+  }
   return arrayDate;
 };
 
-console.log(leapYears(1990, 2020));
+console.log(leapYears(2000, 2010));
