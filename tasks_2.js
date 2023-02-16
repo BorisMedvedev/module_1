@@ -2,9 +2,12 @@
 
 const arrayRandom = [];
 const recursiveFunction = (array) => {
-  let res = array.reduce((acc, item) => acc + item, 0);
-  let num = Math.floor(Math.random() * 11);
+  const num = Math.floor(Math.random() * 11);
   array.push(num);
+
+  if (array.reduce((acc, item) => acc + item, 0) < 50) {
+    recursiveFunction(array);
+  }
 
   return array;
 };
