@@ -1,13 +1,14 @@
 'use strict';
 
-let arr2 = [];
+const arrayRandom = [];
 const recursiveFunction = (array) => {
-  for (let i = 0; i < 10; i++) {
-    let a = Math.round(Math.random() * 10);
-    array.push(a);
-  }
+  let res = array.reduce((acc, item) => acc + item, 0);
+  let num = Math.floor(Math.random() * 11);
+  array.push(num);
 
-  console.log(array);
+  return array;
 };
 
-recursiveFunction(arr2);
+console.log(recursiveFunction(arrayRandom));
+
+console.log(arrayRandom.reduce((acc, item) => acc + item, 0));
