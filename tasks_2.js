@@ -1,11 +1,13 @@
 'use strict';
-function randomNumber(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
 
-console.log('Random Number between 1 and 10: ');
+let arr2 = [];
+const recursiveFunction = (array) => {
+  for (let i = 0; i < 10; i++) {
+    let a = Math.round(Math.random() * 10);
+    array.push(a);
+  }
 
-// Function call
-console.log(randomNumber(1, 9));
+  console.log(array);
+};
+
+recursiveFunction(arr2);
