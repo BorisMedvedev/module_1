@@ -1,14 +1,25 @@
 'use strict';
 
 const cart = {
+  count: 0,
   items: [],
+  discount: 1,
+
+  set setDiscount(promocode) {
+    if (promocode === 'METHED') {
+      this.discount = 0.15;
+    }
+    if (promocode === 'NEWYEAR') {
+      this.discount = 0.21;
+    }
+  },
+
   get totalPrice() {
     return this.calculateItemPrice();
   },
-  count: 0,
-
   calculateItemPrice() {
-    return this.items.reduce((acc, item) => acc + item.price * item.amount, 0);
+    const res = this.items.reduce((acc, item) => acc + item.price * item.amount, 0);
+    return res - res * this.discount;
   },
   add(item, price, amount = 1) {
     this.items.push({item, price, amount});
@@ -27,12 +38,13 @@ const cart = {
     return (this.count += num);
   },
 };
-
-cart.add('товар 1', 231, 1);
+cart.setDiscount = 'NEWYEAR';
+cart.add('товар 1', 231, 5);
 cart.add('товар 2', 140, 2);
 cart.add('товар 3', 265, 3);
 cart.add('товар 4', 324, 4);
+
 console.log(cart.print());
 console.log(cart.items);
-console.log(cart.totalPrice);
 console.log(cart.count);
+console.log(cart.totalPrice);
