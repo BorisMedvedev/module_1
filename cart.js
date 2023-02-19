@@ -6,14 +6,13 @@ const cart = {
   discount: 1,
 
   set setDiscount(promocode) {
-    if (promocode === 'METHED') {
+    if (promocode === 'METHED' && promocode !== '') {
       this.discount = 0.15;
     }
-    if (promocode === 'NEWYEAR') {
+    if (promocode === 'NEWYEAR' && promocode !== '') {
       this.discount = 0.21;
     }
   },
-
   get totalPrice() {
     return this.calculateItemPrice();
   },
@@ -22,7 +21,7 @@ const cart = {
       (acc, item) => acc + item.price * item.amount,
       0
     );
-    return res - res * this.discount;
+    return res;
   },
   add(item, price, amount = 1) {
     this.items.push({ item, price, amount });
