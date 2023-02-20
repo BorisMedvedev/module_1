@@ -21,7 +21,11 @@ const cart = {
       (acc, item) => acc + item.price * item.amount,
       0
     );
-    return res;
+    if (this.discount !== 1) {
+      return res - res * this.discount;
+    } else {
+      return res;
+    }
   },
   add(item, price, amount = 1) {
     this.items.push({ item, price, amount });
