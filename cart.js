@@ -3,7 +3,7 @@
 const cart = {
   count: 0,
   items: [],
-  discount: null,
+  discount: 0,
 
   set setDiscount(promocode) {
     if (promocode === 'METHED' && promocode !== '') {
@@ -44,7 +44,7 @@ const cart = {
     return (this.count += num);
   },
 };
-//cart.setDiscount = 'METHED';
+cart.setDiscount = 'NEWYEAR';
 cart.add('товар 1', 231, 5);
 cart.add('товар 2', 140, 2);
 cart.add('товар 3', 265, 3);

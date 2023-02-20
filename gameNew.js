@@ -4,26 +4,22 @@ const random = Math.floor(Math.random() * 100);
 const newBot = (num) => {
   const input = prompt('Введите число от 0 до 100:');
 
-  if (isNaN(input)) alert('Введите число!');
-
-  if (input) {
-    if (input > 0 && input !== '') {
-      if (input > num) {
-        alert('меньше');
-        newBot(num);
-      } else if (input < num) {
-        alert('Больше');
-        newBot(num);
-      } else {
-        alert('Правильно!');
-        return;
-      }
-    } else {
-      alert('введите корректные данные');
-      newBot(num);
-    }
+  switch (true) {
+    case input === null:
+      return alert('Конец игры');
+    case isNaN(input) || +input < 0 || +input > 100:
+      alert('Введите число от 0 до 100:');
+      break;
+    case +input > num:
+      alert('Меньше');
+      break;
+    case +input < num:
+      alert('Больше');
+      break;
+    default:
+      return alert('Правильно');
   }
-  return;
+  return newBot(num);
 };
 
 newBot(random);

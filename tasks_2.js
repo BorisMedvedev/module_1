@@ -1,17 +1,8 @@
 'use strict';
 
 let arrayRandom = [0];
-const recursiveFunction = (array) => {
-  const num = Math.floor(Math.random() * 11);
-  array.push(num);
-
-  if (array.reduce((acc, item) => acc + item, 0) < 50) {
-    recursiveFunction(array);
-  }
-
-  return arrayRandom;
-};
-
+const recursiveFunction = (array) =>
+  array.reduce((acc, item) => acc + item, 0) >= 50
+    ? [...array]
+    : recursiveFunction([...array, Math.floor(Math.random() * 11)]);
 console.log(recursiveFunction(arrayRandom));
-
-console.log(arrayRandom.reduce((acc, item) => acc + item, 0));
