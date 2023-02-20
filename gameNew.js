@@ -2,11 +2,12 @@
 
 const random = Math.floor(Math.random() * 100);
 const newBot = (num) => {
-  const input = prompt('Введите число от 0 до 100:');
+  const res = prompt('Введите число от 0 до 100:');
+  let input = res.trim();
 
   if (isNaN(input)) alert('Введите число!');
-  if (input <= 0) alert('введите число больше 0');
-  if (input && input !== '') {
+
+  if (input > 0 && input !== '') {
     if (input > num) {
       alert('меньше');
       newBot(num);
@@ -17,6 +18,9 @@ const newBot = (num) => {
       alert('Правильно!');
       return;
     }
+  } else {
+    alert('введите корректные данные');
+    newBot(num);
   }
   return;
 };

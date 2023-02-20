@@ -44,7 +44,7 @@ const cart = {
     return (this.count += num);
   },
 };
-cart.setDiscount = 'NEWYEAR';
+//cart.setDiscount = 'METHED';
 cart.add('товар 1', 231, 5);
 cart.add('товар 2', 140, 2);
 cart.add('товар 3', 265, 3);
