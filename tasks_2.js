@@ -10,6 +10,6 @@ const recursiveFunction = (array = []) => {
   }
   return array;
 };
-
+arrayRandom = recursiveFunction();
 console.log(recursiveFunction(arrayRandom));
 console.log(arrayRandom.reduce((acc, item) => acc + item, 0));
