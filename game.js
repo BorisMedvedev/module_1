@@ -1,47 +1,38 @@
 'use strict';
 
 (() => {
-  const FIGURES_ENG = ['rock', 'scissors', 'paper'];
-  const FIGURES_RUS = ['камень', 'ножницы', 'бумага'];
-  const TURN_MSG = {
-    EN: 'Rock, Paper, Scissors?',
-    RU: 'Камень, Ножницы, Бумага?',
-  };
-  const USER_CHOICE = {
-    EN: 'You have chosen',
-    RU: 'Вы выбрали',
-  };
-  const COMP_CHOICE = {
-    EN: 'Computer has chosen',
-    RU: 'Компьютер выбрал',
-  };
-  const DRAW_MSG = {
-    EN: 'Draw.',
-    RU: 'Ничья.',
-  };
-  const USER_WIN_MSG = {
-    EN: 'You won!',
-    RU: 'Вы выиграли!',
-  };
-  const COMP_WIN_MSG = {
-    EN: 'Computer won...',
-    RU: 'Выиграл компьютер...',
-  };
-  const CONTINUE = {
-    EN: 'Сontinue?',
-    RU: 'Продолжить?',
-  };
-  const RESULTS = {
-    EN: 'GAME RESULTS',
-    RU: 'РЕЗУЛЬТАТЫ ИГРЫ',
-  };
-  const USER_RES = {
-    EN: 'Your points',
-    RU: 'Ваши баллы',
-  };
-  const COMP_RES = {
-    EN: 'Computer points',
-    RU: 'Баллы компьютера',
+  const LOCALIZATION = {
+    EN: {
+      FIGURES: ['rock', 'scissors', 'paper'],
+      TURN_MSG: 'Rock, Paper, Scissors?',
+      USER_CHOICE: 'You have chosen',
+      COMP_CHOICE: 'Computer has chosen',
+      USER_WIN_MSG: 'You won!',
+      DRAW_MSG: 'Draw.',
+      COMP_WIN_MSG: 'Computer won...',
+      CONTINUE: 'Сontinue?',
+      RESULTS: 'GAME RESULTS',
+      USER_RES: 'Your wins',
+      DRAW_RES: 'Draws',
+      COMP_RES: 'Computer wins',
+      QUIT: 'Do you really want to quit?',
+    },
+
+    RU: {
+      FIGURES: ['камень', 'ножницы', 'бумага'],
+      TURN_MSG: 'Камень, Ножницы, Бумага?',
+      USER_CHOICE: 'Вы выбрали',
+      COMP_CHOICE: 'Компьютер выбрал',
+      USER_WIN_MSG: 'Вы выиграли!',
+      DRAW_MSG: 'Ничья.',
+      COMP_WIN_MSG: 'Выиграл компьютер...',
+      CONTINUE: 'Продолжить?',
+      RESULTS: 'РЕЗУЛЬТАТЫ ИГРЫ',
+      USER_RES: 'Ваши победы',
+      DRAW_RES: 'Ничьи',
+      COMP_RES: 'Победы компьютера',
+      QUIT: 'Вы действительно хотите выйти?',
+    },
   };
 
   const getRandomIntInclusive = (min, max) => {
@@ -52,73 +43,50 @@
   };
 
   const choose = (lang) => {
-    const userPlay = prompt(TURN_MSG[lang]);
+    const userPlay = prompt(LOCALIZATION[lang].TURN_MSG);
 
-    if (lang === 'EN') {
-      if (FIGURES_ENG[0].startsWith(userPlay.toLowerCase())) return 1;
-      else if (FIGURES_ENG[1].startsWith(userPlay.toLowerCase())) return 2;
-      else if (FIGURES_ENG[2].startsWith(userPlay.toLowerCase())) return 3;
-      else return choose(lang);
-    } else {
-      if (FIGURES_RUS[0].startsWith(userPlay.toLowerCase())) return 1;
-      else if (FIGURES_RUS[1].startsWith(userPlay.toLowerCase())) return 2;
-      else if (FIGURES_RUS[2].startsWith(userPlay.toLowerCase())) return 3;
-      else return choose(lang);
-    }
+    if (userPlay === null) return null;
+    else if (LOCALIZATION[lang].FIGURES[0].startsWith(userPlay.toLowerCase()))
+      return 0;
+    else if (LOCALIZATION[lang].FIGURES[1].startsWith(userPlay.toLowerCase()))
+      return 1;
+    else if (LOCALIZATION[lang].FIGURES[2].startsWith(userPlay.toLowerCase()))
+      return 2;
+    else return choose(lang);
+  };
+
+  const showResults = (lang, res) => {
+    alert(`${LOCALIZATION[lang].RESULTS}\n
+    ${LOCALIZATION[lang].USER_RES}: ${res.user}\n
+    ${LOCALIZATION[lang].DRAW_RES}: ${res.draw}\n
+    ${LOCALIZATION[lang].COMP_RES}: ${res.comp}`);
   };
 
   const makeTurn = (lang, res) => {
     const userPlay = choose(lang);
-    const compPlay = getRandomIntInclusive(1, 3);
+    const compPlay = getRandomIntInclusive(0, 2);
 
-    alert(`${USER_CHOICE[lang]}: ${lang === 'EN' ? FIGURES_ENG[userPlay - 1] : FIGURES_RUS[userPlay - 1]}.\n
-    ${COMP_CHOICE[lang]}: ${lang === 'EN' ? FIGURES_ENG[compPlay - 1] : FIGURES_RUS[compPlay - 1]}.`);
+    if (userPlay === null) {
+      if (!confirm(LOCALIZATION[lang].QUIT)) makeTurn(lang, res);
+      else showResults(lang, res);
+    } else {
+      alert(`${LOCALIZATION[lang].USER_CHOICE}: ${LOCALIZATION[lang].FIGURES[userPlay]}.\n
+      ${LOCALIZATION[lang].COMP_CHOICE}: ${LOCALIZATION[lang].FIGURES[compPlay]}.`);
 
-    switch (userPlay) {
-      case 1:
-        if (compPlay === 1) {
-          alert(`${DRAW_MSG[lang]}`);
-          res.user += 1;
-          res.comp += 1;
-        } else if (compPlay === 2) {
-          alert(`${USER_WIN_MSG[lang]}`);
-          res.user += 1;
-        } else {
-          alert(`${COMP_WIN_MSG[lang]}`);
-          res.comp += 1;
-        }
-        break;
-      case 2:
-        if (compPlay === 1) {
-          alert(`${COMP_WIN_MSG[lang]}`);
-          res.comp += 1;
-        } else if (compPlay === 2) {
-          alert(`${DRAW_MSG[lang]}`);
-          res.user += 1;
-          res.comp += 1;
-        } else {
-          alert(`${USER_WIN_MSG[lang]}`);
-          res.user += 1;
-        }
-        break;
-      case 3:
-        if (compPlay === 1) {
-          alert(`${USER_WIN_MSG[lang]}`);
-          res.user += 1;
-        } else if (compPlay === 2) {
-          alert(`${COMP_WIN_MSG[lang]}`);
-          res.comp += 1;
-        } else {
-          alert(`${DRAW_MSG[lang]}`);
-          res.user += 1;
-          res.comp += 1;
-        }
-    }
+      if (compPlay === userPlay + 1 || (userPlay === 2 && compPlay === 0)) {
+        alert(LOCALIZATION[lang].USER_WIN_MSG);
+        res.user += 1;
+      } else if (compPlay === userPlay) {
+        alert(LOCALIZATION[lang].DRAW_MSG);
+        res.draw += 1;
+      } else {
+        alert(LOCALIZATION[lang].COMP_WIN_MSG);
+        res.comp += 1;
+      }
 
-    const continueGame = confirm(`${CONTINUE[lang]}`);
-    if (continueGame) makeTurn(lang, res);
-    else {
-      alert(`${RESULTS[lang]}\n${USER_RES[lang]}: ${res.user}\n${COMP_RES[lang]}: ${res.comp}`);
+      if (confirm(LOCALIZATION[lang].CONTINUE)) makeTurn(lang, res);
+      else if (!confirm(LOCALIZATION[lang].QUIT)) makeTurn(lang, res);
+      else showResults(lang, res);
     }
   };
 
@@ -126,15 +94,28 @@
     if (language) {
       const res = {
         user: 0,
+        draw: 0,
         comp: 0,
       };
 
       makeTurn(language, res);
     } else {
-      const selectedLang = prompt('Выберите язык:\n\'RU / RUS\' - русский\n\'EN / ENG\' - английский');
+      const selectedLang = prompt(
+        "Выберите язык:\n'RU / RUS' - русский\n'EN / ENG' - английский"
+      );
 
-      if (selectedLang === 'EN' || selectedLang === 'ENG') game('EN');
-      else if (selectedLang === 'RU' || selectedLang === 'RUS') game('RU');
+      if (selectedLang === null) {
+        if (!confirm(LOCALIZATION.RU.QUIT)) game();
+      } else if (
+        'ENG'.startsWith(selectedLang.toUpperCase()) &&
+        selectedLang !== ''
+      )
+        game('EN');
+      else if (
+        'RUS'.startsWith(selectedLang.toUpperCase()) &&
+        selectedLang !== ''
+      )
+        game('RU');
       else game();
     }
   };
