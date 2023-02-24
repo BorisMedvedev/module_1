@@ -46,11 +46,20 @@
     const userPlay = prompt(LOCALIZATION[lang].TURN_MSG);
 
     if (userPlay === null) return null;
-    else if (LOCALIZATION[lang].FIGURES[0].startsWith(userPlay.toLowerCase()))
+    else if (
+      LOCALIZATION[lang].FIGURES[0].startsWith(userPlay.toLowerCase()) &&
+      userPlay !== ''
+    )
       return 0;
-    else if (LOCALIZATION[lang].FIGURES[1].startsWith(userPlay.toLowerCase()))
+    else if (
+      LOCALIZATION[lang].FIGURES[1].startsWith(userPlay.toLowerCase()) &&
+      userPlay !== ''
+    )
       return 1;
-    else if (LOCALIZATION[lang].FIGURES[2].startsWith(userPlay.toLowerCase()))
+    else if (
+      LOCALIZATION[lang].FIGURES[2].startsWith(userPlay.toLowerCase()) &&
+      userPlay !== ''
+    )
       return 2;
     else return choose(lang);
   };
