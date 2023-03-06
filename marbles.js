@@ -19,10 +19,25 @@
     const userChoice = prompt('Камень, Ножницы, Бумага?');
 
     if (userChoice === null) return null;
-    else if (FIGURES[0].startsWith(userChoice.toLowerCase())) return 0;
-    else if (FIGURES[1].startsWith(userChoice.toLowerCase())) return 1;
-    else if (FIGURES[2].startsWith(userChoice.toLowerCase())) return 2;
-    else return chooseFigure();
+    else if (
+      userChoice !== '' &&
+      FIGURES[0].startsWith(userChoice.toLowerCase())
+    )
+      return 0;
+    else if (
+      userChoice !== '' &&
+      FIGURES[1].startsWith(userChoice.toLowerCase())
+    )
+      return 1;
+    else if (
+      userChoice !== '' &&
+      FIGURES[2].startsWith(userChoice.toLowerCase())
+    )
+      return 2;
+    else {
+      alert('Введите Камень, Ножницы или Бумага.');
+      return chooseFigure();
+    }
   };
 
   const rps = () => {
@@ -47,16 +62,21 @@
     );
 
     if (userBet === null) return null;
-    else if (
-      parseInt(userBet) < 1 ||
-      parseInt(userBet) > marblesLeft.user ||
-      isNaN(userBet)
-    )
+    else if (userBet === '') {
+      alert('Пустой ввод!');
       return bet(marblesLeft);
-    else return parseInt(userBet);
+    } else if (parseInt(userBet) < 1 || parseInt(userBet) > marblesLeft.user) {
+      alert('Введите число от 1 до количества имеющихся у вас шариков.');
+      return bet(marblesLeft);
+    } else if (isNaN(userBet)) {
+      alert('Введите число!');
+      return bet(marblesLeft);
+    } else return parseInt(userBet);
   };
 
   const makeTurn = (firstToBet, marblesLeft) => {
+    let quit = false;
+
     switch (firstToBet % 2) {
       case 0:
         alert('Ваш ход.');
@@ -103,6 +123,7 @@
           }
         } else if (!confirm('Вы точно хотите выйти?'))
           makeTurn(firstToBet, marblesLeft);
+        else quit = true;
         break;
 
       case 1:
@@ -149,14 +170,16 @@
         }
     }
 
-    if (marblesLeft.user > 0 && marblesLeft.comp > 0)
-      makeTurn(firstToBet + 1, marblesLeft);
-    else if (marblesLeft.user <= 0) {
-      winCount.comp += 1;
-      alert('Игра окончена. Вы проиграли...');
-    } else {
-      winCount.user += 1;
-      alert('Игра окончена. Вы выиграли!');
+    if (!quit) {
+      if (marblesLeft.user > 0 && marblesLeft.comp > 0)
+        makeTurn(firstToBet + 1, marblesLeft);
+      else if (marblesLeft.user <= 0) {
+        winCount.comp += 1;
+        alert('Игра окончена. Вы проиграли...');
+      } else {
+        winCount.user += 1;
+        alert('Игра окончена. Вы выиграли!');
+      }
     }
   };
 
