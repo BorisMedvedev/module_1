@@ -79,7 +79,6 @@
 
     switch (firstToBet % 2) {
       case 0:
-        alert('Ваш ход.');
         const userBet = bet(marblesLeft);
         const compChoice = getRandomIntInclusive(0, 1);
 
@@ -192,8 +191,7 @@
     const firstToBet = rps();
     makeTurn(firstToBet, marblesLeft);
 
-    if (confirm('Хотите сыграть ещё?')) marblesGame();
-    else alert(`Ваши победы: ${winCount.user}\nПобеды бота: ${winCount.comp}`);
+    alert(`Ваши победы: ${winCount.user}\nПобеды бота: ${winCount.comp}`);
   };
 
   window.marbles = marblesGame;
