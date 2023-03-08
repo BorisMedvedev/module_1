@@ -1,6 +1,8 @@
 'use strict';
 
 (() => {
+  let quit = false;
+
   const winCount = {
     user: 0,
     comp: 0,
@@ -22,19 +24,19 @@
     else if (
       userChoice !== '' &&
       FIGURES[0].startsWith(userChoice.toLowerCase())
-    )
+    ) {
       return 0;
-    else if (
+    } else if (
       userChoice !== '' &&
       FIGURES[1].startsWith(userChoice.toLowerCase())
-    )
+    ) {
       return 1;
-    else if (
+    } else if (
       userChoice !== '' &&
       FIGURES[2].startsWith(userChoice.toLowerCase())
-    )
+    ) {
       return 2;
-    else {
+    } else {
       alert('Введите Камень, Ножницы или Бумага.');
       return chooseFigure();
     }
@@ -58,7 +60,7 @@
 
   const bet = (marblesLeft) => {
     const userBet = prompt(
-      `Осталось шариков: ${marblesLeft.user}.\nВведите вашу ставку:`
+      `Ваш ход.\nОсталось шариков: ${marblesLeft.user}.\nВведите вашу ставку:`,
     );
 
     if (userBet === null) return null;
@@ -75,8 +77,6 @@
   };
 
   const makeTurn = (firstToBet, marblesLeft) => {
-    let quit = false;
-
     switch (firstToBet % 2) {
       case 0:
         const userBet = bet(marblesLeft);
@@ -88,91 +88,90 @@
             marblesLeft.comp -= userBet;
             alert(`Бот не угадал чётность. Вы получаете его шарики!\n
                                Ваши шарики: ${
-                                 marblesLeft.user >= 0
-                                   ? marblesLeft.user <= 10
-                                     ? marblesLeft.user
-                                     : 10
-                                   : 0
-                               }\n
+                                 marblesLeft.user >= 0 ?
+                                   marblesLeft.user <= 10 ?
+                                     marblesLeft.user :
+                                     10 :
+                                   0
+  }\n
                                Шарики бота: ${
-                                 marblesLeft.comp >= 0
-                                   ? marblesLeft.comp <= 10
-                                     ? marblesLeft.comp
-                                     : 10
-                                   : 0
-                               }`);
+                                 marblesLeft.comp >= 0 ?
+                                   marblesLeft.comp <= 10 ?
+                                     marblesLeft.comp :
+                                     10 :
+                                   0
+  }`);
           } else {
             marblesLeft.user -= userBet;
             marblesLeft.comp += userBet;
             alert(`Бот угадал чётность. Вы отдаёте шарики...\n
                                Ваши шарики: ${
-                                 marblesLeft.user >= 0
-                                   ? marblesLeft.user <= 10
-                                     ? marblesLeft.user
-                                     : 10
-                                   : 0
-                               }\n
+                                 marblesLeft.user >= 0 ?
+                                   marblesLeft.user <= 10 ?
+                                     marblesLeft.user :
+                                     10 :
+                                   0
+  }\n
                                Шарики бота: ${
-                                 marblesLeft.comp >= 0
-                                   ? marblesLeft.comp <= 10
-                                     ? marblesLeft.comp
-                                     : 10
-                                   : 0
-                               }`);
+                                 marblesLeft.comp >= 0 ?
+                                   marblesLeft.comp <= 10 ?
+                                     marblesLeft.comp :
+                                     10 :
+                                   0
+  }`);
           }
-        } else if (!confirm('Вы точно хотите выйти?'))
+        } else if (!confirm('Вы точно хотите выйти?')) {
           makeTurn(firstToBet, marblesLeft);
-        else quit = true;
+        } else quit = true;
         break;
 
       case 1:
-        alert('Ход бота.');
         const compBet = getRandomIntInclusive(1, marblesLeft.comp);
-        const userChoice = confirm('Число чётное?');
+        const userChoice = confirm('Ход бота.\nЧисло чётное?');
 
         if (userChoice === (compBet % 2 === 0)) {
           marblesLeft.user += compBet;
           marblesLeft.comp -= compBet;
           alert(`Ставка бота: ${compBet}\nВы угадали чётность! Вы получаете шарики бота.\n
                            Ваши шарики: ${
-                             marblesLeft.user >= 0
-                               ? marblesLeft.user <= 10
-                                 ? marblesLeft.user
-                                 : 10
-                               : 0
-                           }\n
+                             marblesLeft.user >= 0 ?
+                               marblesLeft.user <= 10 ?
+                                 marblesLeft.user :
+                                 10 :
+                               0
+  }\n
                            Шарики бота: ${
-                             marblesLeft.comp >= 0
-                               ? marblesLeft.comp <= 10
-                                 ? marblesLeft.comp
-                                 : 10
-                               : 0
-                           }`);
+                             marblesLeft.comp >= 0 ?
+                               marblesLeft.comp <= 10 ?
+                                 marblesLeft.comp :
+                                 10 :
+                               0
+  }`);
         } else {
           marblesLeft.user -= compBet;
           marblesLeft.comp += compBet;
           alert(`Ставка бота: ${compBet}\nВы не угадали чётность. Вы отдаёте шарики...\n
                            Ваши шарики: ${
-                             marblesLeft.user >= 0
-                               ? marblesLeft.user <= 10
-                                 ? marblesLeft.user
-                                 : 10
-                               : 0
-                           }\n
+                             marblesLeft.user >= 0 ?
+                               marblesLeft.user <= 10 ?
+                                 marblesLeft.user :
+                                 10 :
+                               0
+  }\n
                            Шарики бота: ${
-                             marblesLeft.comp >= 0
-                               ? marblesLeft.comp <= 10
-                                 ? marblesLeft.comp
-                                 : 10
-                               : 0
-                           }`);
+                             marblesLeft.comp >= 0 ?
+                               marblesLeft.comp <= 10 ?
+                                 marblesLeft.comp :
+                                 10 :
+                               0
+  }`);
         }
     }
 
     if (!quit) {
-      if (marblesLeft.user > 0 && marblesLeft.comp > 0)
+      if (marblesLeft.user > 0 && marblesLeft.comp > 0) {
         makeTurn(firstToBet + 1, marblesLeft);
-      else if (marblesLeft.user <= 0) {
+      } else if (marblesLeft.user <= 0) {
         winCount.comp += 1;
         alert('Игра окончена. Вы проиграли...');
       } else {
@@ -191,7 +190,12 @@
     const firstToBet = rps();
     makeTurn(firstToBet, marblesLeft);
 
-    alert(`Ваши победы: ${winCount.user}\nПобеды бота: ${winCount.comp}`);
+    if (!quit) {
+      if (confirm('Хотите сыграть ещё?')) marblesGame();
+      else {
+        alert(`Ваши победы: ${winCount.user}\nПобеды бота: ${winCount.comp}`);
+      }
+    }
   };
 
   window.marbles = marblesGame;
